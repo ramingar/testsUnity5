@@ -3,11 +3,6 @@
 var agent : NavMeshAgent;
 var goal  : GameObject;
 
-function Start ()
-{
-
-}
-
 function Update ()
 {
     var go : GameObject;
@@ -23,8 +18,8 @@ function Update ()
 
 function gameObjectClicked() : GameObject
 {
-    var ray       : Ray = Camera.main.ScreenPointToRay ( Input.mousePosition );
-    var hit       : RaycastHit;
+    var ray : Ray = Camera.main.ScreenPointToRay ( Input.mousePosition );
+    var hit : RaycastHit;
     
     if(Physics.Raycast(ray, hit)) {
         return hit.transform.gameObject;
