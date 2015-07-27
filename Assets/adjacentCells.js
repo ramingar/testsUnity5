@@ -1,7 +1,8 @@
 ﻿#pragma strict
 
-var radius   : float = 0.0;
-var distance : float = 0.0;
+var radius     : float  = 0.0;
+var distance   : float  = 0.0;
+var typeOfCell : String = 'floor';
 
 function OnMouseOver()
 {
@@ -22,5 +23,14 @@ function OnMouseExit()
 
 function getAdjacents()
 {
-    return Physics.SphereCastAll(this.transform.position, radius, this.transform.position + Vector3.up, distance);
+    var raycastHits : RaycastHit[] = Physics.SphereCastAll(this.transform.position, radius, this.transform.position + Vector3.up, distance);
+    //var result : RaycastHit[] = new RaycastHit[raycastHits.length];
+    var result = new Array();
+    
+    for(var go : RaycastHit in raycastHits) {
+        if (go.transform.gameObject.tag == typeOfCell) {
+            result.push(go);
+        }
+    }
+    return result.ToBuiltin(RaycastHit) as RaycastHit[];
 }
